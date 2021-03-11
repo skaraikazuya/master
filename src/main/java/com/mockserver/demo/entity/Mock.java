@@ -1,12 +1,36 @@
 package com.mockserver.demo.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("mock实体")
 public class Mock {
 
+    @ApiModelProperty("id")
     private int id;
+
+    @ApiModelProperty("方法名")
     private String method;
+
+    @ApiModelProperty("路径")
     private String path;
+
+    @ApiModelProperty("参数")
     private String param;
+
+    @ApiModelProperty("返回值类型")
     private int type;//0-固定返回，1-随机返回，2-传入返回
+
+    @ApiModelProperty("固定返回值")
+    private String responseVal;
+
+    public String getResponseVal() {
+        return responseVal;
+    }
+
+    public void setResponseVal(String responseVal) {
+        this.responseVal = responseVal;
+    }
 
     public int getId() {
         return id;
