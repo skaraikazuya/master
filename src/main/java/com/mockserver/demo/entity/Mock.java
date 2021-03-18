@@ -21,7 +21,7 @@ public class Mock {
     @ApiModelProperty("返回值类型")
     private int type;//0-固定返回，1-随机返回，2-传入返回
 
-    @ApiModelProperty("固定返回值")
+    @ApiModelProperty("传入返回值")
     private String responseVal;
 
     public String getResponseVal() {

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Random;
 
 import static org.mockserver.model.Parameter.param;
 
@@ -40,8 +41,21 @@ public class MockController {
             request.withPath(mock.getPath());
             request.withPathParameter(param("p",mock.getParam()));
 
+
             HttpResponse response = new HttpResponse();
-            response.withBody(mock.getResponseVal());
+            int type = mock.getType();//0-固定返回，1-随机返回，2-传入返回
+            if (type == 0) {
+                mock.setResponseVal("234");
+                response.withBody(mock.getResponseVal());
+            }else if(type == 1){
+                Random r = new Random();
+                int random = r.nextInt(100);
+                mock.setResponseVal(String.valueOf(random));
+                response.withBody(mock.getResponseVal());
+            }else{
+                response.withBody(mock.getResponseVal());
+            }
+
             MockUtil.createExpectation(server,request,response);
 
         return "success";
